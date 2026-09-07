@@ -1,0 +1,14 @@
+D:\OneDrive\Desktop\c#_projects\appli_console\bin\Debug\net8.0\appli_console.exe
+D:\OneDrive\Desktop\c#_projects\appli_console\bin\Debug\net8.0\appli_console.deps.json
+D:\OneDrive\Desktop\c#_projects\appli_console\bin\Debug\net8.0\appli_console.runtimeconfig.json
+D:\OneDrive\Desktop\c#_projects\appli_console\bin\Debug\net8.0\appli_console.dll
+D:\OneDrive\Desktop\c#_projects\appli_console\bin\Debug\net8.0\appli_console.pdb
+D:\OneDrive\Desktop\c#_projects\appli_console\obj\Debug\net8.0\appli_console.GeneratedMSBuildEditorConfig.editorconfig
+D:\OneDrive\Desktop\c#_projects\appli_console\obj\Debug\net8.0\appli_console.AssemblyInfoInputs.cache
+D:\OneDrive\Desktop\c#_projects\appli_console\obj\Debug\net8.0\appli_console.AssemblyInfo.cs
+D:\OneDrive\Desktop\c#_projects\appli_console\obj\Debug\net8.0\appli_console.csproj.CoreCompileInputs.cache
+D:\OneDrive\Desktop\c#_projects\appli_console\obj\Debug\net8.0\appli_console.dll
+D:\OneDrive\Desktop\c#_projects\appli_console\obj\Debug\net8.0\refint\appli_console.dll
+D:\OneDrive\Desktop\c#_projects\appli_console\obj\Debug\net8.0\appli_console.pdb
+D:\OneDrive\Desktop\c#_projects\appli_console\obj\Debug\net8.0\appli_console.genruntimeconfig.cache
+D:\OneDrive\Desktop\c#_projects\appli_console\obj\Debug\net8.0\ref\appli_console.dll
