@@ -6,16 +6,10 @@ using System.Linq;
 // Classe représentant une tâche
 class Tache
 {
-	private static int _compteurId = 1;
 	public int Id { get; set; }
-	public string Titre { get; set; }
+	public string Titre { get; set; } = "";
 	public bool Faite { get; set; }
 	public DateTime DateCreation { get; set; }
-
-	public Tache()
-	{
-		Id = _compteurId++;
-	}
 }
 
 class Program
@@ -106,7 +100,7 @@ class Program
 	static void AjouterTache()
 	{
 		Console.Write("Titre de la tâche : ");
-		string titre = Console.ReadLine();
+		string titre = Console.ReadLine() ?? "";
 		if (string.IsNullOrWhiteSpace(titre))
 		{
 			Console.WriteLine("Le titre ne peut pas être vide.");
