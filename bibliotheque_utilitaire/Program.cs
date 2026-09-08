@@ -10,6 +10,9 @@ namespace BibliothequeUtilitaires
             if (n < 0)
                 throw new ArgumentException("Le nombre doit être positif.");
 
+            if (n > 20)
+                throw new ArgumentException("Le nombre est trop grand : 21! dépasse la capacité d'un long (maximum accepté : 20).");
+
             if (n == 0 || n == 1)
                 return 1;
 
@@ -82,11 +85,20 @@ namespace BibliothequeUtilitaires
 
     class Program
     {
+        static int LireEntier(string message)
+        {
+            while (true)
+            {
+                Console.Write(message);
+                if (int.TryParse(Console.ReadLine(), out var valeur))
+                    return valeur;
+                Console.WriteLine("Veuillez entrer un nombre entier valide.");
+            }
+        }
+
         static void Main(string[] args)
         {
-            int choix;
-
-            do
+            while (true)
             {
                 Console.WriteLine("\n===== MENU UTILITAIRES =====");
                 Console.WriteLine("1. Calculer Factorielle");
@@ -94,51 +106,53 @@ namespace BibliothequeUtilitaires
                 Console.WriteLine("3. Calculer PGCD");
                 Console.WriteLine("4. Suite de Fibonacci");
                 Console.WriteLine("0. Quitter");
-                Console.Write("Votre choix : ");
 
-                choix = int.Parse(Console.ReadLine());
+                int choix = LireEntier("Votre choix : ");
 
-                switch (choix)
+                if (choix == 0)
                 {
-                    case 1:
-                        Console.Write("Entrer un nombre : ");
-                        int n = int.Parse(Console.ReadLine());
-                        Console.WriteLine($"Factorielle({n}) = {Utilitaires.Factorielle(n)}");
-                        break;
-
-                    case 2:
-                        Console.Write("Entrer un nombre : ");
-                        int p = int.Parse(Console.ReadLine());
-                        Console.WriteLine(Utilitaires.EstPremier(p)
-                            ? "Le nombre est premier."
-                            : "Le nombre n'est pas premier.");
-                        break;
-
-                    case 3:
-                        Console.Write("Entrer le premier nombre : ");
-                        int a = int.Parse(Console.ReadLine());
-                        Console.Write("Entrer le deuxième nombre : ");
-                        int b = int.Parse(Console.ReadLine());
-                        Console.WriteLine($"PGCD({a}, {b}) = {Utilitaires.PGCD(a, b)}");
-                        break;
-
-                    case 4:
-                        Console.Write("Entrer le rang n : ");
-                        int f = int.Parse(Console.ReadLine());
-                        Console.WriteLine($"Suite de Fibonacci jusqu'au rang {f} :");
-                        Utilitaires.afficherFibonacci(f);
-                        break;
-
-                    case 0:
-                        Console.WriteLine("Au revoir !");
-                        break;
-
-                    default:
-                        Console.WriteLine("Choix invalide.");
-                        break;
+                    Console.WriteLine("Au revoir !");
+                    break;
                 }
 
-            } while (choix != 0);
+                try
+                {
+                    switch (choix)
+                    {
+                        case 1:
+                            int n = LireEntier("Entrer un nombre : ");
+                            Console.WriteLine($"Factorielle({n}) = {Utilitaires.Factorielle(n)}");
+                            break;
+
+                        case 2:
+                            int p = LireEntier("Entrer un nombre : ");
+                            Console.WriteLine(Utilitaires.EstPremier(p)
+                                ? "Le nombre est premier."
+                                : "Le nombre n'est pas premier.");
+                            break;
+
+                        case 3:
+                            int a = LireEntier("Entrer le premier nombre : ");
+                            int b = LireEntier("Entrer le deuxième nombre : ");
+                            Console.WriteLine($"PGCD({a}, {b}) = {Utilitaires.PGCD(a, b)}");
+                            break;
+
+                        case 4:
+                            int f = LireEntier("Entrer le rang n : ");
+                            Console.WriteLine($"Suite de Fibonacci jusqu'au rang {f} :");
+                            Utilitaires.afficherFibonacci(f);
+                            break;
+
+                        default:
+                            Console.WriteLine("Choix invalide.");
+                            break;
+                    }
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine($"Erreur : {ex.Message}");
+                }
+            }
         }
     }
 }
