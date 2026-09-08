@@ -74,9 +74,10 @@ public class ContactManager
     // ----------------- RECHERCHE -----------------
     public List<Contact> Rechercher(string terme)
     {
+        terme ??= "";
         return contacts.Where(c =>
-            c.Nom.Contains(terme, StringComparison.OrdinalIgnoreCase) ||
-            c.Prenom.Contains(terme, StringComparison.OrdinalIgnoreCase) ||
+            (c.Nom ?? "").Contains(terme, StringComparison.OrdinalIgnoreCase) ||
+            (c.Prenom ?? "").Contains(terme, StringComparison.OrdinalIgnoreCase) ||
             c.Categorie.ToString().Equals(terme, StringComparison.OrdinalIgnoreCase)
         ).ToList();
     }
@@ -112,7 +113,7 @@ public class ContactManager
         }
 
         Console.Write("Confirmer suppression (O/N): ");
-        if (Console.ReadLine().ToUpper() == "O")
+        if ((Console.ReadLine() ?? "").Trim().ToUpper() == "O")
         {
             contacts.Remove(contact);
             Sauvegarder();

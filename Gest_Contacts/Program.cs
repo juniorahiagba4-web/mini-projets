@@ -39,27 +39,25 @@ class Program
 
                 case "3":
                     Console.Write("Terme: ");
-                    var res = manager.Rechercher(Console.ReadLine());
+                    var terme = Console.ReadLine() ?? "";
+                    var res = manager.Rechercher(terme);
                     res.ForEach(c => Console.WriteLine($"{c.Id} - {c.Nom} {c.Prenom}"));
                     break;
 
                 case "4":
                     Console.WriteLine("Liste des contacts :");
                     manager.Lister();
-                    Console.Write("ID du contact à modifier : ");
-                    int idMod = int.Parse(Console.ReadLine());
+                    int idMod = LireEntier("ID du contact à modifier : ");
                     manager.Modifier(idMod, SaisirContact());
                     break;
 
                 case "5":
-                    Console.Write("ID: ");
-                    int idSup = int.Parse(Console.ReadLine());
+                    int idSup = LireEntier("ID: ");
                     manager.Supprimer(idSup);
                     break;
 
                 case "6":
-                    Console.Write("Categorie (Ami/Famille/Travail): ");
-                    var cat = Enum.Parse<Categorie>(Console.ReadLine(), true);
+                    var cat = LireCategorie("Categorie (Ami/Famille/Travail): ");
                     manager.Exporter(cat);
                     break;
 
@@ -75,24 +73,19 @@ class Program
         do
         {
             Console.Write("Téléphone (chiffres uniquement): ");
-            tel = Console.ReadLine();
+            tel = Console.ReadLine() ?? "";
         } while (!long.TryParse(tel, out _));
 
         string email;
         do
         {
             Console.Write("Email: ");
-            email = Console.ReadLine();
-        } while (!email.Contains("@"));
+            email = Console.ReadLine() ?? "";
+        } while (!email.Contains('@'));
 
-        Console.Write("Nom: ");
-        string nom = Console.ReadLine();
-
-        Console.Write("Prénom: ");
-        string prenom = Console.ReadLine();
-
-        Console.Write("Categorie (Ami/Famille/Travail): ");
-        var cat = Enum.Parse<Categorie>(Console.ReadLine(), true);
+        string nom = LireTexteNonVide("Nom: ");
+        string prenom = LireTexteNonVide("Prénom: ");
+        var cat = LireCategorie("Categorie (Ami/Famille/Travail): ");
 
         return new Contact
         {
@@ -102,5 +95,38 @@ class Program
             Email = email,
             Categorie = cat
         };
+    }
+
+    static int LireEntier(string message)
+    {
+        while (true)
+        {
+            Console.Write(message);
+            if (int.TryParse(Console.ReadLine(), out var valeur))
+                return valeur;
+            Console.WriteLine("Veuillez entrer un nombre valide.");
+        }
+    }
+
+    static Categorie LireCategorie(string message)
+    {
+        while (true)
+        {
+            Console.Write(message);
+            if (Enum.TryParse<Categorie>(Console.ReadLine(), true, out var cat))
+                return cat;
+            Console.WriteLine("Catégorie invalide. Valeurs possibles : Ami, Famille, Travail.");
+        }
+    }
+
+    static string LireTexteNonVide(string message)
+    {
+        string texte;
+        do
+        {
+            Console.Write(message);
+            texte = Console.ReadLine() ?? "";
+        } while (string.IsNullOrWhiteSpace(texte));
+        return texte;
     }
 }
