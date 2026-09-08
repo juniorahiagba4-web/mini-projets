@@ -10,3 +10,8 @@ obj/
 
 ## Rider/VS Code
 .vscode/
+
+## SQLite (local dev databases, not shared between machines)
+*.db
+*.db-shm
+*.db-wal

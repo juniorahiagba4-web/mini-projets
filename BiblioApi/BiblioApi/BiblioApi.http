@@ -1,6 +1,27 @@
 @BiblioApi_HostAddress = http://localhost:5051
 
-GET {{BiblioApi_HostAddress}}/weatherforecast/
+GET {{BiblioApi_HostAddress}}/films/
 Accept: application/json
+
+###
+
+POST {{BiblioApi_HostAddress}}/auth/register
+Content-Type: application/json
+
+{
+  "nom": "Alice",
+  "email": "alice@example.com",
+  "password": "P@ssword1"
+}
+
+###
+
+POST {{BiblioApi_HostAddress}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "alice@example.com",
+  "password": "P@ssword1"
+}
 
 ###
