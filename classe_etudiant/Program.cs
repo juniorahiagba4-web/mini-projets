@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace GestionEtudiants
 {
-    class Etudiant
+    public class Etudiant
     {
         public string Prenom { get; set; }
         public double[] Notes { get; set; }
@@ -23,6 +23,9 @@ namespace GestionEtudiants
 
         public Etudiant(string prenom, double[] notes)
         {
+            if (notes != null && notes.Any(n => n < 0 || n > 20))
+                throw new ArgumentOutOfRangeException(nameof(notes), "Chaque note doit être comprise entre 0 et 20.");
+
             Prenom = prenom;
             Notes = notes;
         }
